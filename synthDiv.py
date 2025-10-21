@@ -11,11 +11,8 @@ def synthDiv(coeffVec,root):
     newPoly = [0]*n
     newPoly[n-1] = coeffVec[n-1]
     for i in range(n-2,-1,-1):
-        
         newPoly[i] = coeffVec[i] + root*newPoly[i+1]
-        # print(newPoly)
 
-    # print("Before pop? poly = ", newPoly)
     remainder = newPoly[0]
     newPoly = newPoly[1:]
 
@@ -35,6 +32,7 @@ def synthDiv_multiple(coeffVec,roots):
             print(remainder)
             return updatedPoly, remainder
         numerator = updatedPoly
+
     # Had some trouble here bc Python is not strongly typed: trying to grab the values in the ndarrays not the ndarrays    
     returnVal = []
     for n in numerator:
@@ -46,8 +44,6 @@ def quadSolver(coeffVec):
     if (len(coeffVec)) != 3:
         raise ValueError("You did not input a quadratic!!")
     
-    # print(coeffVec[0])
-    # print(coeffVec[1])
     # Find better way to compute the roots
     x1 = (-1*coeffVec[1] + cmath.sqrt((coeffVec[1]**2 - 4*coeffVec[2]*coeffVec[0])))/(2*coeffVec[2])
     x2 = (-1*coeffVec[1] - cmath.sqrt((coeffVec[1]**2 - 4*coeffVec[2]*coeffVec[0])))/(2*coeffVec[2])

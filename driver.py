@@ -24,6 +24,7 @@ def main():
     C_p = constructCompanionMatrix(p[:len(p)-1])
     print("Here is the constructed companion matrix:")
     print( C_p)
+
     # Here is problem 2.2
     n = len(p) - 1
     roots,trust = pm.powerMethod_deflation(C_p,3,np.ones((n,1),dtype=float))
@@ -35,8 +36,6 @@ def main():
     print("| ",roots[2].item()," | ", trust[2],"  |")
 
     # Here is problem 2.3
-    # np.ndaSrray.flatten(roots)
-    # roots = list(roots)
     reducedP,remainder = sd.synthDiv_multiple(p,roots)
 
     # Run the quad solver on the reduced polynomial

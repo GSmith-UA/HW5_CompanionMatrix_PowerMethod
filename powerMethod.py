@@ -15,7 +15,6 @@ def powerMethod_deflation(A, eigNumber, xInit, maxIter=1000, tol=1e-6):
         trustList.append(goodExit)
         outerProd = np.outer(v,v)
         A_it = A_it - lam*outerProd
-        # A_it = A_it - lam*(np.array(v,ndmin=2)@np.transpose(np.array(v,ndmin=2)))
 
     return eigList,trustList
 
@@ -29,14 +28,10 @@ def powerMethod_standard(A, xInit, maxIter = 1000, tol=1e-6):
     for k in range(0,maxIter):
         y = A@x_current
         x_new = (1/np.linalg.norm(y))*y
-        # print(np.shape(A))
-        # print(A)
-        # print(x_new)
-        # print(np.shape(x_new))
         eigNew = np.transpose(x_new)@A@x_new
 
         # This checks to see how much our eigenvalue is changing... if only a little we have probably converged
-        # Consider what the tolerance should be here... maybe better to check the eigen vector??
+        # Consider what the tolerance should be here... maybe better to check the eigenvector??
         if (k>0) and (np.abs(eigNew - eig) < tol):
             eig = eigNew
             goodExit = True
